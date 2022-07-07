@@ -34,6 +34,7 @@ public class common {
             String tempDir = getProperty("java.io.tmpdir");
             File destFile = new File(Paths.get(tempDir, fileName + ".png").toString());
             FileUtils.copyFile(srcFile, destFile);
+            System.out.println("screenshot " + fileName + " was saved on " + tempDir);
         } catch (Exception e) {
             System.out.println("couldn't take screen shot");
         }
