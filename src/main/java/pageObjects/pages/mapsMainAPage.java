@@ -15,13 +15,13 @@ import java.time.Duration;
 @Getter
 public class mapsMainAPage extends common {
 
-    @FindBy(xpath = "//input[@autofocus='autofocus']")
+    @FindBy(xpath = "//input[@id='searchboxinput']")
     private WebElement searchInput;
 
-    @FindBy(xpath = "//button[@aria-label='Search']")
+    @FindBy(xpath = "//button[@id='searchbox-searchbutton']")
     private WebElement searchButton;
 
-    @FindBy(xpath = "//button[@aria-label='Zoom in']")
+    @FindBy(xpath = "//button[@id='widget-zoom-in']")
     private WebElement zoomInButton;
 
     public mapsMainAPage(WebDriver driver) {
@@ -32,12 +32,12 @@ public class mapsMainAPage extends common {
     }
 
     public void searchPlace(String search) {
-        getSearchInput().sendKeys(search);
-        getSearchButton().click();
+        fluentWait.until(ExpectedConditions.visibilityOf(getSearchInput())).sendKeys(search);
+        fluentWait.until(ExpectedConditions.visibilityOf(getSearchButton())).click();
         fluentWait.until(ExpectedConditions.visibilityOf(getZoomInButton()));
     }
 
     public void zoomIn() {
-        getZoomInButton().click();
+        fluentWait.until(ExpectedConditions.visibilityOf(getZoomInButton())).click();
     }
 }
